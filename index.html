@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>Event Countdown Central</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FF6B35;
-            --secondary: #004E89;
-            --accent: #F7B801;
-            --dark: #1A1A2E;
-            --light: #F8F9FA;
-            --gradient: linear-gradient(135deg, #FF6B35 0%, #F7B801 100%);
+            --primary: #C9AA71;
+            --secondary: #8B4513;
+            --accent: #FFD700;
+            --dark: #0A0A0A;
+            --light: #F5E6D3;
+            --glow: #FFA500;
         }
 
         * {
@@ -24,148 +24,132 @@
         }
 
         body {
-            font-family: 'Work Sans', sans-serif;
+            font-family: 'Crimson Text', serif;
             background: var(--dark);
             color: var(--light);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        /* Animated background */
-        .background-animation {
+        .stars {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            overflow: hidden;
         }
 
-        .blob {
+        .star {
             position: absolute;
+            background: white;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            animation: float 20s infinite ease-in-out;
+            animation: twinkle 3s infinite;
         }
 
-        .blob:nth-child(1) {
-            width: 500px;
-            height: 500px;
-            background: var(--primary);
-            top: -100px;
-            left: -100px;
-            animation-delay: 0s;
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
         }
 
-        .blob:nth-child(2) {
-            width: 400px;
-            height: 400px;
-            background: var(--secondary);
-            bottom: -100px;
-            right: -100px;
-            animation-delay: 5s;
+        .glow-orb {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 170, 113, 0.2) 0%, transparent 70%);
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: -1;
+            animation: float 15s infinite ease-in-out;
         }
 
-        .blob:nth-child(3) {
-            width: 350px;
-            height: 350px;
-            background: var(--accent);
-            top: 50%;
-            left: 50%;
-            animation-delay: 10s;
+        .glow-orb:nth-child(1) {
+            top: -200px;
+            left: -200px;
+        }
+
+        .glow-orb:nth-child(2) {
+            bottom: -200px;
+            right: -200px;
+            animation-delay: 7s;
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            33% {
-                transform: translate(100px, -100px) scale(1.1);
-            }
-            66% {
-                transform: translate(-100px, 100px) scale(0.9);
-            }
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 50px) scale(1.1); }
         }
 
-        /* Navigation */
-        nav {
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            background: rgba(26, 26, 46, 0.7);
-            animation: slideDown 0.6s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .logo {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            transition: color 0.3s;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
             min-height: 100vh;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            padding: 0 5%;
-            text-align: center;
+            align-items: center;
         }
 
-        .hero-content {
-            max-width: 900px;
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 900;
+            color: var(--accent);
+            text-shadow: 
+                0 0 10px var(--glow),
+                0 0 20px var(--glow),
+                0 0 30px var(--glow),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 10px var(--glow),
+                    0 0 20px var(--glow),
+                    0 0 30px var(--glow),
+                    2px 2px 4px rgba(0, 0, 0, 0.8);
+            }
+            to {
+                text-shadow: 
+                    0 0 20px var(--glow),
+                    0 0 30px var(--glow),
+                    0 0 40px var(--glow),
+                    0 0 50px var(--glow),
+                    2px 2px 4px rgba(0, 0, 0, 0.8);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .content {
+            max-width: 800px;
+            text-align: center;
             animation: fadeInUp 1s ease-out 0.3s both;
         }
 
@@ -180,410 +164,246 @@
             }
         }
 
-        .hero h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 8vw, 7rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: clamp(1.1rem, 2vw, 1.5rem);
-            color: rgba(248, 249, 250, 0.8);
+        .description {
+            font-size: 1.3rem;
+            line-height: 2;
             margin-bottom: 3rem;
-            font-weight: 300;
+            color: rgba(245, 230, 211, 0.9);
+            text-align: justify;
+            text-align-last: center;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: var(--dark);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--light);
-            border: 2px solid var(--light);
-        }
-
-        .btn-secondary:hover {
-            background: var(--light);
-            color: var(--dark);
-            transform: translateY(-3px);
-        }
-
-        /* Section Styling */
-        section {
-            padding: 8rem 5%;
-            min-height: 60vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .section-title {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: rgba(248, 249, 250, 0.6);
-            text-align: center;
-            margin-bottom: 4rem;
-            max-width: 600px;
-        }
-
-        /* About Section */
-        .about-content {
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: rgba(248, 249, 250, 0.9);
-        }
-
-        .about-text h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .skill-item {
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
-        }
-
-        .skill-item:hover {
-            background: rgba(255, 107, 53, 0.1);
-            border-color: var(--primary);
-            transform: translateX(10px);
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s;
-            cursor: pointer;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
-        }
-
-        .project-card h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+        .description strong {
             color: var(--accent);
+            font-weight: 700;
         }
 
-        .project-card p {
-            color: rgba(248, 249, 250, 0.7);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .project-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            padding: 0.4rem 1rem;
-            background: rgba(255, 107, 53, 0.2);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--primary);
-        }
-
-        /* Contact Section */
-        .contact-content {
-            max-width: 600px;
-            text-align: center;
-        }
-
-        .contact-links {
-            display: flex;
+        .event-cards {
+            display: grid;
             gap: 2rem;
-            justify-content: center;
-            margin-top: 3rem;
-            flex-wrap: wrap;
+            margin: 4rem 0;
         }
 
-        .contact-link {
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
+        .event-card {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.3) 0%, rgba(201, 170, 113, 0.2) 100%);
+            border: 2px solid var(--primary);
             border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-decoration: none;
-            color: var(--light);
-            transition: all 0.3s;
-            min-width: 150px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
         }
 
-        .contact-link:hover {
-            background: var(--gradient);
-            color: var(--dark);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.5s;
         }
 
-        .contact-link strong {
-            display: block;
+        .event-card:hover::before {
+            left: 100%;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 
+                0 10px 40px rgba(255, 215, 0, 0.3),
+                inset 0 0 20px rgba(255, 215, 0, 0.1);
+        }
+
+        .event-card h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .event-card p {
             font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            color: rgba(245, 230, 211, 0.8);
+            margin-bottom: 1.5rem;
         }
 
-        /* Footer */
-        footer {
-            padding: 3rem 5%;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(248, 249, 250, 0.6);
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: var(--light);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 50px;
+            border: 2px solid var(--accent);
+            box-shadow: 
+                0 5px 20px rgba(255, 215, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* Responsive */
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 10px 30px rgba(255, 215, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border-color: var(--light);
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .features {
+            margin: 3rem 0;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .features li {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: rgba(245, 230, 211, 0.9);
+        }
+
+        .features li::before {
+            content: '⚔';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .divider {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 3rem auto;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--accent);
+            font-size: 1.5rem;
+            background: var(--dark);
+            padding: 0 1rem;
+        }
+
         @media (max-width: 768px) {
-            nav {
-                padding: 1.5rem 5%;
+            h1 {
+                font-size: 2.5rem;
             }
 
-            .nav-links {
-                gap: 1.5rem;
-                font-size: 0.9rem;
+            .description {
+                font-size: 1.1rem;
+                text-align: center;
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .event-card h2 {
+                font-size: 2rem;
             }
 
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            section {
-                padding: 5rem 5%;
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="background-animation">
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
+    <div class="stars" id="stars"></div>
+    <div class="glow-orb"></div>
+    <div class="glow-orb"></div>
+
+    <div class="container">
+        <header>
+            <h1>EVENT COUNTDOWN CENTRAL</h1>
+            <p class="subtitle">Never Miss a Moment</p>
+        </header>
+
+        <div class="content">
+            <p class="description">
+                Welcome to <strong>Event Countdown Central</strong>, your ultimate destination for tracking the most anticipated moments in gaming and beyond. Whether you're waiting for the next epic expansion, a historic game launch, or any special event, we've got you covered with precise, timezone-aware countdowns that ensure you'll be ready when the time comes.
+            </p>
+
+            <div class="divider"></div>
+
+            <ul class="features">
+                <li>Real-time countdowns to your most anticipated events</li>
+                <li>Automatic timezone detection for accurate local times</li>
+                <li>Custom timezone selection for global coordination</li>
+                <li>Beautiful, themed countdown pages for different events</li>
+                <li>Never miss a launch, premiere, or special moment</li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <div class="event-cards">
+                <div class="event-card">
+                    <h2>World of Warcraft</h2>
+                    <p>Track the countdown to Midnight, the epic new expansion, and the return of Burning Crusade Classic Anniversary Edition. Experience Azeroth's greatest moments with precision timing.</p>
+                    <a href="warcraft.html" class="cta-button">
+                        <span>Enter Azeroth</span>
+                    </a>
+                </div>
+            </div>
+
+            <p style="margin-top: 3rem; color: rgba(245, 230, 211, 0.6); font-size: 1.1rem;">
+                More countdowns coming soon...
+            </p>
+        </div>
     </div>
 
-    <nav>
-        <div class="logo">YourName</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Building Digital Experiences</h1>
-            <p>Creative developer and designer crafting beautiful, functional websites and applications</p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <p class="section-subtitle">Passionate about creating meaningful digital experiences</p>
-        <div class="about-content">
-            <div class="about-text">
-                <h3>Hello, I'm [Your Name]</h3>
-                <p>I'm a full-stack developer with a passion for creating beautiful, user-friendly websites and applications. With expertise in modern web technologies, I bring ideas to life through clean code and thoughtful design.</p>
-                <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.</p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <strong>Frontend</strong>
-                    <p>React, Vue, HTML/CSS</p>
-                </div>
-                <div class="skill-item">
-                    <strong>Backend</strong>
-                    <p>Node.js, Python, APIs</p>
-                </div>
-                <div class="skill-item">
-                    <strong>Design</strong>
-                    <p>UI/UX, Figma, Adobe XD</p>
-                </div>
-                <div class="skill-item">
-                    <strong>Tools</strong>
-                    <p>Git, Docker, VS Code</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">Some of my recent work and side projects</p>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>E-Commerce Platform</h3>
-                <p>A fully responsive online shopping platform with cart functionality, user authentication, and payment integration.</p>
-                <div class="project-tags">
-                    <span class="tag">React</span>
-                    <span class="tag">Node.js</span>
-                    <span class="tag">MongoDB</span>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3>Weather Dashboard</h3>
-                <p>Real-time weather application with beautiful visualizations and location-based forecasts.</p>
-                <div class="project-tags">
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">API</span>
-                    <span class="tag">CSS</span>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3>Portfolio Builder</h3>
-                <p>Interactive tool helping designers and developers create stunning portfolio websites in minutes.</p>
-                <div class="project-tags">
-                    <span class="tag">Vue.js</span>
-                    <span class="tag">Firebase</span>
-                    <span class="tag">Tailwind</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2 class="section-title">Let's Connect</h2>
-        <div class="contact-content">
-            <p class="section-subtitle">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
-            <div class="contact-links">
-                <a href="mailto:your.email@example.com" class="contact-link">
-                    <strong>Email</strong>
-                    <span>your.email@example.com</span>
-                </a>
-                <a href="https://github.com/yourusername" class="contact-link" target="_blank">
-                    <strong>GitHub</strong>
-                    <span>@yourusername</span>
-                </a>
-                <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
-                    <strong>LinkedIn</strong>
-                    <span>Your Profile</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Your Name. Built with passion and hosted on GitHub Pages.</p>
-    </footer>
-
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll animation to sections
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.6s, transform 0.6s';
-            observer.observe(section);
-        });
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 2;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
     </script>
 </body>
 </html>
