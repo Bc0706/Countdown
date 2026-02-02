@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World of Warcraft - Countdown to Glory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Morpheus&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --wow-gold: #FFCF40;
+            --wow-blue: #00D4FF;
+            --wow-purple: #A335EE;
+            --wow-orange: #FF8000;
+            --dark: #0D0D0D;
+            --darker: #050505;
+            --light: #E8DCC4;
+            --stone: #8B7355;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated background */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(163, 53, 238, 0.1) 0%, transparent 50%),
+                linear-gradient(180deg, #050505 0%, #0D0D0D 50%, #1a1206 100%);
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--wow-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: rise 8s infinite;
+        }
+
+        @keyframes rise {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(1);
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(0.5);
+            }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 3rem 2rem 1rem;
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            background: linear-gradient(180deg, #FFE4A0 0%, var(--wow-gold) 50%, #D4A520 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(255, 207, 64, 0.6);
+            margin-bottom: 0.5rem;
+            letter-spacing: 4px;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from {
+                filter: drop-shadow(0 0 20px rgba(255, 207, 64, 0.6));
+            }
+            to {
+                filter: drop-shadow(0 0 40px rgba(255, 207, 64, 1));
+            }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--stone);
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--wow-blue);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--wow-gold);
+            text-shadow: 0 0 10px var(--wow-gold);
+        }
+
+        /* Timezone selector */
+        .timezone-selector {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 500px;
+            padding: 0 2rem;
+        }
+
+        .timezone-selector label {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--wow-gold);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .timezone-selector select {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            background: rgba(13, 13, 13, 0.8);
+            color: var(--light);
+            border: 2px solid var(--stone);
+            border-radius: 10px;
+            font-family: 'Crimson Text', serif;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .timezone-selector select:hover {
+            border-color: var(--wow-gold);
+        }
+
+        .timezone-selector select:focus {
+            outline: none;
+            border-color: var(--wow-blue);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Countdown section */
+        .countdown-section {
+            margin: 3rem 0;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(139, 115, 85, 0.2) 0%, rgba(13, 13, 13, 0.8) 100%);
+            border: 3px solid;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .countdown-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                var(--wow-gold),
+                var(--wow-blue),
+                var(--wow-purple),
+                var(--wow-orange),
+                var(--wow-gold)
+            );
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s;
+            background-size: 300% 300%;
+            animation: gradientShift 6s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .countdown-section:hover::before {
+            opacity: 1;
+        }
+
+        .countdown-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(255, 207, 64, 0.3);
+        }
+
+        .countdown-section.midnight {
+            border-color: var(--wow-blue);
+        }
+
+        .countdown-section.tbc {
+            border-color: var(--wow-orange);
+        }
+
+        .event-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .midnight .event-title {
+            background: linear-gradient(180deg, #00F0FF 0%, var(--wow-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.6));
+        }
+
+        .tbc .event-title {
+            background: linear-gradient(180deg, #FFB84D 0%, var(--wow-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(255, 128, 0, 0.6));
+        }
+
+        .event-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--stone);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .launch-info {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: rgba(232, 220, 196, 0.8);
+        }
+
+        .launch-info strong {
+            color: var(--wow-gold);
+        }
+
+        /* Countdown timer */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: nowrap;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .time-unit {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            border: 2px solid rgba(139, 115, 85, 0.4);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-unit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(255, 207, 64, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .time-unit:hover::before {
+            opacity: 1;
+        }
+
+        .time-unit:hover {
+            transform: translateY(-5px);
+            border-color: var(--wow-gold);
+            box-shadow: 0 10px 30px rgba(255, 207, 64, 0.2);
+        }
+
+        .time-value {
+            display: block;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--wow-gold);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-family: 'Cinzel Decorative', serif;
+            text-shadow: 0 0 20px rgba(255, 207, 64, 0.5);
+        }
+
+        .time-label {
+            display: block;
+            font-size: 1rem;
+            color: var(--stone);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Special launch sections */
+        .launch-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .launch-type {
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            border: 2px solid;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .launch-type.early {
+            border-color: var(--wow-purple);
+        }
+
+        .launch-type.standard {
+            border-color: var(--wow-blue);
+        }
+
+        .launch-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(163, 53, 238, 0.3);
+        }
+
+        .launch-type h4 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .launch-type.early h4 {
+            color: var(--wow-purple);
+        }
+
+        .launch-type.standard h4 {
+            color: var(--wow-blue);
+        }
+
+        .launch-type p {
+            color: rgba(232, 220, 196, 0.8);
+            font-size: 1.1rem;
+        }
+
+        /* Divider */
+        .divider {
+            width: 300px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--wow-gold), transparent);
+            margin: 4rem auto;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '⚔';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            background: var(--darker);
+            padding: 0 1rem;
+            color: var(--wow-gold);
+        }
+
+        /* Live indicator */
+        .live-indicator {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(163, 53, 238, 0.2));
+            border-radius: 15px;
+            border: 2px solid var(--wow-gold);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 207, 64, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 207, 64, 1);
+            }
+        }
+
+        .live-indicator h3 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.5rem;
+            color: var(--wow-gold);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(255, 207, 64, 0.8);
+        }
+
+        .live-indicator p {
+            font-size: 1.3rem;
+            color: var(--light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .countdown {
+                gap: 0.8rem;
+            }
+
+            .time-unit {
+                padding: 1rem 0.5rem;
+            }
+
+            .time-value {
+                font-size: 2rem;
+            }
+
+            .time-label {
+                font-size: 0.75rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .countdown-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div id="particles"></div>
+
+    <div class="header">
+        <a href="index.html" class="back-link">← Back to Event Central</a>
+        <h1 class="logo">WORLD OF WARCRAFT</h1>
+        <p class="subtitle">Countdown to Glory</p>
+    </div>
+
+    <div class="timezone-selector">
+        <label for="timezone">Select Your Timezone:</label>
+        <select id="timezone">
+            <option value="auto">Auto-detect (Your Local Time)</option>
+            <option value="America/Los_Angeles">PST - Pacific (Los Angeles)</option>
+            <option value="America/Denver">MST - Mountain (Denver)</option>
+            <option value="America/Chicago">CST - Central (Chicago)</option>
+            <option value="America/New_York">EST - Eastern (New York)</option>
+            <option value="Europe/London">GMT - London</option>
+            <option value="Europe/Paris">CET - Paris</option>
+            <option value="Europe/Berlin">CET - Berlin</option>
+            <option value="Asia/Tokyo">JST - Tokyo</option>
+            <option value="Asia/Seoul">KST - Seoul</option>
+            <option value="Asia/Shanghai">CST - Shanghai</option>
+            <option value="Australia/Sydney">AEDT - Sydney</option>
+            <option value="Pacific/Auckland">NZDT - Auckland</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <!-- Midnight Countdown -->
+        <div class="countdown-section midnight" id="midnight-section">
+            <h2 class="event-title">THE WAR WITHIN: MIDNIGHT</h2>
+            <p class="event-subtitle">The next epic chapter in Azeroth's saga</p>
+            <div class="launch-info">
+                <strong>Global Launch:</strong> March 2, 2026 at 3:00 PM PST
+            </div>
+
+            <div class="launch-types">
+                <div class="launch-type early">
+                    <h4>Early Access</h4>
+                    <p id="midnight-early-local">Loading...</p>
+                </div>
+                <div class="launch-type standard">
+                    <h4>Standard Launch</h4>
+                    <p id="midnight-standard-local">Loading...</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <div id="midnight-countdown" class="countdown">
+                    <div class="time-unit">
+                        <span class="time-value" id="midnight-days">0</span>
+                        <span class="time-label">Days</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="midnight-hours">0</span>
+                        <span class="time-label">Hours</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="midnight-minutes">0</span>
+                        <span class="time-label">Minutes</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="midnight-seconds">0</span>
+                        <span class="time-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- TBC Classic Countdown -->
+        <div class="countdown-section tbc" id="tbc-section">
+            <h2 class="event-title">BURNING CRUSADE CLASSIC</h2>
+            <p class="event-subtitle">Anniversary Edition - Return to Outland</p>
+            <div class="launch-info">
+                <strong>Global Launch:</strong> February 5, 2026 at 3:00 PM PST
+            </div>
+
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <p id="tbc-local-time" style="font-size: 1.2rem; color: var(--wow-gold);">Loading...</p>
+            </div>
+
+            <div id="tbc-countdown" class="countdown">
+                <div class="time-unit">
+                    <span class="time-value" id="tbc-days">0</span>
+                    <span class="time-label">Days</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="tbc-hours">0</span>
+                    <span class="time-label">Hours</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="tbc-minutes">0</span>
+                    <span class="time-label">Minutes</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="tbc-seconds">0</span>
+                    <span class="time-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const size = Math.random() * 4 + 1;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.bottom = '-10px';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Event dates (in PST)
+        const MIDNIGHT_LAUNCH_PST = new Date('2026-03-02T15:00:00-08:00');
+        const MIDNIGHT_EARLY_PST = new Date('2026-02-27T15:00:00-08:00'); // 3 days early access (assumed)
+        const TBC_LAUNCH_PST = new Date('2026-02-05T15:00:00-08:00');
+
+        let selectedTimezone = 'auto';
+        
+        // Timezone selector
+        document.getElementById('timezone').addEventListener('change', function() {
+            selectedTimezone = this.value;
+            updateAllCountdowns();
+            updateLocalTimes();
+        });
+
+        function getLocalTime(date) {
+            if (selectedTimezone === 'auto') {
+                return date.toLocaleString(undefined, {
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true
+                });
+            } else {
+                return date.toLocaleString('en-US', {
+                    timeZone: selectedTimezone,
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true,
+                    timeZoneName: 'short'
+                });
+            }
+        }
+
+        function updateLocalTimes() {
+            document.getElementById('midnight-early-local').textContent = getLocalTime(MIDNIGHT_EARLY_PST);
+            document.getElementById('midnight-standard-local').textContent = getLocalTime(MIDNIGHT_LAUNCH_PST);
+            document.getElementById('tbc-local-time').textContent = 'Your local time: ' + getLocalTime(TBC_LAUNCH_PST);
+        }
+
+        function updateCountdown(targetDate, prefix) {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById(prefix + '-section').innerHTML = `
+                    <div class="live-indicator">
+                        <h3>🎮 LIVE NOW! 🎮</h3>
+                        <p>The event has begun! Jump in and play!</p>
+                    </div>
+                `;
+                return true;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById(prefix + '-days').textContent = days;
+            document.getElementById(prefix + '-hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById(prefix + '-minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById(prefix + '-seconds').textContent = seconds.toString().padStart(2, '0');
+
+            return false;
+        }
+
+        function updateAllCountdowns() {
+            const midnightLive = updateCountdown(MIDNIGHT_LAUNCH_PST, 'midnight');
+            const tbcLive = updateCountdown(TBC_LAUNCH_PST, 'tbc');
+
+            if (!midnightLive || !tbcLive) {
+                setTimeout(updateAllCountdowns, 1000);
+            }
+        }
+
+        // Initialize
+        updateLocalTimes();
+        updateAllCountdowns();
+    </script>
+</body>
+</html>
