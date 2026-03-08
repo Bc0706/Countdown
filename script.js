@@ -38,236 +38,244 @@
 ================================================================ */
 const BIS_DATA = [
 
-  /* ── HEAD ──────────────────────────────────────────────── */
+  // ================================================================
+  // FERAL DRUID — MIDNIGHT PRE-RAID / PRE-SEASON BIS
+  // ================================================================
+  // Item IDs are set to 0 (unknown) until Midnight launches and real
+  // IDs are available on Wowhead. Matching falls back to item name.
+  // To add real IDs: replace the 0 with the correct numeric ID.
+  // ================================================================
+
+  /* ── MAIN HAND ──────────────────────────────────────────── */
+  {
+    slot: 'main_hand',
+    itemName: "Victor's Flashfrozen Blade",
+    itemId: 0,
+    sourceType: 'dungeon',
+    dungeonName: 'Den of Nalorakk',
+    bossNumber: 3,
+    bossName: 'Nalorakk',
+    isAlternative: false,
+  },
+  {
+    slot: 'main_hand',
+    itemName: "Roostwarden's Bough",
+    itemId: 0,
+    sourceType: 'dungeon',
+    dungeonName: 'Windrunner Spire',
+    bossNumber: 3,
+    bossName: 'Commander Kroluk',
+    isAlternative: true,
+  },
+
+  /* ── HEAD ───────────────────────────────────────────────── */
   {
     slot: 'head',
-    itemName: 'Eclipsed Predator\'s Hood',
-    itemId: 220101,
+    itemName: 'Spellsnap Shadowmask',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'The Sunspire',
-    bossNumber: 3,
-    bossName: 'The Dawnbreaker',
+    dungeonName: "Magisters' Terrace",
+    bossNumber: 2,
+    bossName: 'Seranel Sunlash',
     isAlternative: false,
   },
 
-  /* ── NECK ──────────────────────────────────────────────── */
+  /* ── NECK ───────────────────────────────────────────────── */
   {
     slot: 'neck',
-    itemName: 'Fang-Chain of the Void',
-    itemId: 220202,
+    itemName: 'Pendant of Malefic Fury',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'Void-Touched Sanctum',
+    dungeonName: 'Murder Row',
     bossNumber: 2,
-    bossName: 'Echoing Sorrow',
+    bossName: 'Zaen Bladesorrow',
     isAlternative: false,
   },
 
-  /* ── SHOULDER ──────────────────────────────────────────── */
+  /* ── SHOULDER ───────────────────────────────────────────── */
   {
     slot: 'shoulder',
-    itemName: 'Mantle of Fading Stars',
-    itemId: 220303,
+    itemName: 'Enthralled Bonespines',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'The Fading Spire',
-    bossNumber: 2,
-    bossName: 'Liege of the Lost',
+    dungeonName: 'Maisara Caverns',
+    bossNumber: 1,
+    bossName: "Muro'jin and Nekraxx",
     isAlternative: false,
   },
 
-  /* ── BACK ──────────────────────────────────────────────── */
+  /* ── BACK ───────────────────────────────────────────────── */
   {
     slot: 'back',
-    itemName: 'Cloak of Sunstrider\'s Hunt',
-    itemId: 220401,
+    itemName: 'Bloodthorn Burnous',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'Silvermoon Depths',
-    bossNumber: 1,
-    bossName: 'Warden Ashveil',
+    dungeonName: 'The Blinding Vale',
+    bossNumber: 2,
+    bossName: 'Ikuzz the Light Hunter',
     isAlternative: false,
-  },
-  {
-    slot: 'back',
-    itemName: 'Windshear Drape of Midnight',
-    itemId: 220402,
-    sourceType: 'dungeon',
-    dungeonName: 'Twilight Crucible',
-    bossNumber: 1,
-    bossName: 'Sunsworn Warmaster',
-    isAlternative: true,
   },
 
   /* ── CHEST ──────────────────────────────────────────────── */
   {
     slot: 'chest',
-    itemName: 'Tunic of the Midnight Stalker',
-    itemId: 220503,
+    itemName: 'War Trial Vestments',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'Twilight Crucible',
+    dungeonName: 'Den of Nalorakk',
     bossNumber: 3,
-    bossName: 'Archon of Midnight',
+    bossName: 'Nalorakk',
     isAlternative: false,
   },
 
   /* ── WRIST ──────────────────────────────────────────────── */
   {
     slot: 'wrist',
-    itemName: 'Bracers of Voidstalking',
-    itemId: 220601,
+    itemName: 'Rootwarden Wraps',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'Void-Touched Sanctum',
-    bossNumber: 1,
-    bossName: 'Dar\'void the Seeker',
+    dungeonName: 'The Blinding Vale',
+    bossNumber: 2,
+    bossName: 'Ikuzz the Light Hunter',
     isAlternative: false,
   },
 
   /* ── HANDS ──────────────────────────────────────────────── */
   {
     slot: 'hands',
-    itemName: 'Grips of the Fading Hunt',
-    itemId: 220701,
+    itemName: 'Gloves of Viscous Goo',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'The Fading Spire',
-    bossNumber: 1,
-    bossName: 'Specter of Quel\'nas',
-    isAlternative: false,
-  },
-  {
-    slot: 'hands',
-    itemName: 'Handwraps of Sunsworn Fury',
-    itemId: 220702,
-    sourceType: 'dungeon',
-    dungeonName: 'Twilight Crucible',
+    dungeonName: "Magisters' Terrace",
     bossNumber: 2,
-    bossName: 'Void-Sworn Hound',
-    isAlternative: true,
+    bossName: 'Seranel Sunlash',
+    isAlternative: false,
   },
 
   /* ── WAIST ──────────────────────────────────────────────── */
   {
     slot: 'waist',
-    itemName: 'Girdle of Eclipsed Fury',
-    itemId: 220802,
+    itemName: 'Snapvine Cinch',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'The Sunspire',
-    bossNumber: 2,
-    bossName: 'High Arcanist Sylara',
+    dungeonName: 'Windrunner Spire',
+    bossNumber: 3,
+    bossName: 'Commander Kroluk',
     isAlternative: false,
   },
 
   /* ── LEGS ───────────────────────────────────────────────── */
   {
     slot: 'legs',
-    itemName: 'Leggings of the Midnight Chase',
-    itemId: 220903,
+    itemName: 'Breeches of Deft Deals',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'Silvermoon Depths',
-    bossNumber: 3,
-    bossName: 'Prince Kael\'endrel Reborn',
+    dungeonName: 'Murder Row',
+    bossNumber: 2,
+    bossName: 'Zaen Bladesorrow',
     isAlternative: false,
   },
 
   /* ── FEET ───────────────────────────────────────────────── */
   {
     slot: 'feet',
-    itemName: 'Treads of the Void-Touched',
-    itemId: 221003,
+    itemName: "Arctic Explorer's Legwraps",
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'Void-Touched Sanctum',
-    bossNumber: 3,
-    bossName: 'Mistress Umbra',
+    dungeonName: 'Den of Nalorakk',
+    bossNumber: 2,
+    bossName: 'Sentinel of Winter',
     isAlternative: false,
   },
 
   /* ── FINGER 1 ───────────────────────────────────────────── */
   {
     slot: 'finger1',
-    itemName: 'Ring of the Sunsworn',
-    itemId: 221101,
+    itemName: 'Bifurcation Band',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'Twilight Crucible',
-    bossNumber: 1,
-    bossName: 'Sunsworn Warmaster',
+    dungeonName: "Magisters' Terrace",
+    bossNumber: 3,
+    bossName: 'Gemellus',
     isAlternative: false,
   },
 
   /* ── FINGER 2 ───────────────────────────────────────────── */
   {
     slot: 'finger2',
-    itemName: 'Seal of Midnight\'s Hunt',
-    itemId: 221203,
+    itemName: 'Sickening Signet of Atroxus',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'The Fading Spire',
-    bossNumber: 3,
-    bossName: 'Dawnmender Torael',
-    isAlternative: false,
-  },
-
-  /* ── TRINKET 1 ──────────────────────────────────────────── */
-  {
-    slot: 'trinket1',
-    itemName: 'Void-Forged Claw',
-    itemId: 221302,
-    sourceType: 'dungeon',
-    dungeonName: 'Twilight Crucible',
+    dungeonName: 'Voidscar Arena',
     bossNumber: 2,
-    bossName: 'Void-Sworn Hound',
+    bossName: 'Atroxus',
     isAlternative: false,
   },
+
+  /* ── TRINKET 1 (Primary BiS) ────────────────────────────── */
   {
     slot: 'trinket1',
-    itemName: 'Dawnbreaker\'s Fang',
-    itemId: 221301,
+    itemName: 'Vessel of Tortured Souls',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'The Sunspire',
+    dungeonName: 'Maisara Caverns',
     bossNumber: 3,
-    bossName: 'The Dawnbreaker',
-    isAlternative: true,
+    bossName: "Rak'tul, Vessel of Souls",
+    isAlternative: false,
   },
 
-  /* ── TRINKET 2 ──────────────────────────────────────────── */
+  /* ── TRINKET 2 (Primary BiS) ────────────────────────────── */
   {
     slot: 'trinket2',
-    itemName: 'Emblem of Feral Mastery',
-    itemId: 221402,
+    itemName: 'Emberwing Feather',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'Silvermoon Depths',
-    bossNumber: 2,
-    bossName: 'The Crimson Herald',
+    dungeonName: 'Windrunner Spire',
+    bossNumber: 3,
+    bossName: 'Commander Kroluk',
     isAlternative: false,
   },
 
-  /* ── MAIN HAND ──────────────────────────────────────────── */
+  /* ── TRINKET ALTERNATIVES ───────────────────────────────── */
   {
-    slot: 'main_hand',
-    itemName: 'Fang of the Eclipse',
-    itemId: 221503,
+    slot: 'trinket1',
+    itemName: 'Void Execution Mandate',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'The Sunspire',
-    bossNumber: 3,
-    bossName: 'The Dawnbreaker',
-    isAlternative: false,
-  },
-  {
-    slot: 'main_hand',
-    itemName: 'Claw of the Midnight Sun',
-    itemId: 221502,
-    sourceType: 'dungeon',
-    dungeonName: 'Twilight Crucible',
-    bossNumber: 3,
-    bossName: 'Archon of Midnight',
+    dungeonName: 'Voidscar Arena',
+    bossNumber: 2,
+    bossName: 'Atroxus',
     isAlternative: true,
   },
-
-  /* ── OFF HAND ───────────────────────────────────────────── */
   {
-    slot: 'off_hand',
-    itemName: 'Twilight Rondel',
-    itemId: 221601,
+    slot: 'trinket2',
+    itemName: 'Heart of Wind',
+    itemId: 0,
     sourceType: 'dungeon',
-    dungeonName: 'Twilight Crucible',
+    dungeonName: 'Windrunner Spire',
     bossNumber: 3,
-    bossName: 'Archon of Midnight',
-    isAlternative: false,
+    bossName: 'Commander Kroluk',
+    isAlternative: true,
+  },
+  {
+    slot: 'trinket1',
+    itemName: "Freightrunner's Flask",
+    itemId: 0,
+    sourceType: 'dungeon',
+    dungeonName: 'Murder Row',
+    bossNumber: 2,
+    bossName: 'Zaen Bladesorrow',
+    isAlternative: true,
+  },
+  {
+    slot: 'trinket2',
+    itemName: 'Lightspire Core',
+    itemId: 0,
+    sourceType: 'dungeon',
+    dungeonName: 'The Blinding Vale',
+    bossNumber: 2,
+    bossName: 'Ikuzz the Light Hunter',
+    isAlternative: true,
   },
 
 ];
@@ -284,31 +292,53 @@ const BIS_DATA = [
    Midnight expansion. Update with real names at launch.
 ================================================================ */
 const DUNGEON_DATA = {
-  'The Sunspire': [
-    { bossNumber: 1, bossName: 'Vanguard of the Eclipse' },
-    { bossNumber: 2, bossName: 'High Arcanist Sylara' },
-    { bossNumber: 3, bossName: 'The Dawnbreaker' },
+
+  'Windrunner Spire': [
+    { bossNumber: 1, bossName: 'Emberdawn' },
+    { bossNumber: 2, bossName: 'Derelict Duo' },
+    { bossNumber: 3, bossName: 'Commander Kroluk' },
+    { bossNumber: 4, bossName: 'The Restless Heart' },
   ],
-  'Void-Touched Sanctum': [
-    { bossNumber: 1, bossName: 'Dar\'void the Seeker' },
-    { bossNumber: 2, bossName: 'Echoing Sorrow' },
-    { bossNumber: 3, bossName: 'Mistress Umbra' },
+
+  'Murder Row': [
+    { bossNumber: 1, bossName: 'Kystia Manaheart' },
+    { bossNumber: 2, bossName: 'Zaen Bladesorrow' },
+    { bossNumber: 3, bossName: 'Xathuux the Annihilator' },
+    { bossNumber: 4, bossName: 'Lithiel Cinderfury' },
   ],
-  'Silvermoon Depths': [
-    { bossNumber: 1, bossName: 'Warden Ashveil' },
-    { bossNumber: 2, bossName: 'The Crimson Herald' },
-    { bossNumber: 3, bossName: 'Prince Kael\'endrel Reborn' },
+
+  'Den of Nalorakk': [
+    { bossNumber: 1, bossName: 'The Hoardmonger' },
+    { bossNumber: 2, bossName: 'Sentinel of Winter' },
+    { bossNumber: 3, bossName: 'Nalorakk' },
   ],
-  'The Fading Spire': [
-    { bossNumber: 1, bossName: 'Specter of Quel\'nas' },
-    { bossNumber: 2, bossName: 'Liege of the Lost' },
-    { bossNumber: 3, bossName: 'Dawnmender Torael' },
+
+  'Maisara Caverns': [
+    { bossNumber: 1, bossName: "Muro'jin and Nekraxx" },
+    { bossNumber: 2, bossName: 'Vordaza' },
+    { bossNumber: 3, bossName: "Rak'tul, Vessel of Souls" },
   ],
-  'Twilight Crucible': [
-    { bossNumber: 1, bossName: 'Sunsworn Warmaster' },
-    { bossNumber: 2, bossName: 'Void-Sworn Hound' },
-    { bossNumber: 3, bossName: 'Archon of Midnight' },
+
+  'The Blinding Vale': [
+    { bossNumber: 1, bossName: 'Lightblossom Trinity' },
+    { bossNumber: 2, bossName: 'Ikuzz the Light Hunter' },
+    { bossNumber: 3, bossName: 'Lightwarden Ruia' },
+    { bossNumber: 4, bossName: 'Ziekket' },
   ],
+
+  "Magisters' Terrace": [
+    { bossNumber: 1, bossName: 'Arcanotron Custos' },
+    { bossNumber: 2, bossName: 'Seranel Sunlash' },
+    { bossNumber: 3, bossName: 'Gemellus' },
+    { bossNumber: 4, bossName: 'Degentrius' },
+  ],
+
+  'Voidscar Arena': [
+    { bossNumber: 1, bossName: "Taz'Rah" },
+    { bossNumber: 2, bossName: 'Atroxus' },
+    { bossNumber: 3, bossName: 'Charonus' },
+  ],
+
 };
 
 /* ================================================================
